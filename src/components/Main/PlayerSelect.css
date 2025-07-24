@@ -1,0 +1,4 @@
+#player-select {
+  display: flex;
+  flex-direction: column;
+}
