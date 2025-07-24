@@ -1,11 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import PlayerSelect from "./components/Main/PlayerSelect";
+import { getUserProfile } from "./utils/getUserProfile";
 
 export default function App() {
   const [userLibraries, setUserLibraries] = useState([]);
   const [userIdOne, setUserIdOne] = useState(null);
   const [userIdTwo, setUserIdTwo] = useState(null);
+  const [userOne, setUserOne] = useState(null);
+  const [userTwo, setUserTwo] = useState(null);
 
   function runCompare() {
     if (userLibraries.length < 2) {
@@ -13,7 +16,12 @@ export default function App() {
       return;
     }
   }
+  useEffect(() => {
+    getUserProfile(userIdOne, setUserOne);
+    getUserProfile(userIdTwo, setUserTwo);
+  }, [userIdOne, userIdTwo]);
 
+  if (userOne) console.log("user:", userOne);
   return (
     <>
       <h1>GAME SPINNER</h1>
@@ -25,12 +33,25 @@ export default function App() {
             <PlayerSelect setUserId={setUserIdTwo} text="User Two" />
           </div>
           <div id="selected-userID-text">
-            {userIdOne && <p>{`User one: ${userIdOne}`}</p>}
-            {userIdOne && <p>{`User two: ${userIdTwo}`}</p>}
+            {userOne && (
+              <section className="user-info">
+                <h1>{userOne.personaname}</h1>
+                <img src={userOne.avatarfull} alt="" />
+                <p>SteamID: {userOne.steamid}</p>
+              </section>
+            )}
+            {userTwo && (
+              <section className="user-info">
+                <h1>{userTwo.personaname}</h1>
+                <img src={userTwo.avatarfull} alt="" />
+                <p>SteamID: {userTwo.steamid}</p>
+              </section>
+            )}
           </div>
           <button onClick={runCompare}>Compare libraries</button>
         </section>
-        <section id="common-games">
+
+        {/* <section id="common-games">
           <ul>
             <li>1</li>
             <li>2</li>
@@ -38,7 +59,7 @@ export default function App() {
             <li>4</li>
             <li>5</li>
           </ul>
-        </section>
+        </section> */}
       </main>
     </>
   );
