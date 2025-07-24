@@ -20,9 +20,13 @@ export default function App() {
       <main>
         <section id="user-select">
           <div id="userID-input">
-            <PlayerSelect setUserIdOne={setUserIdOne} text="User One" />
+            <PlayerSelect setUserId={setUserIdOne} text="User One" />
             <p></p>
-            <PlayerSelect setUserIdTwo={setUserIdTwo} text="User Two" />
+            <PlayerSelect setUserId={setUserIdTwo} text="User Two" />
+          </div>
+          <div id="selected-userID-text">
+            {userIdOne && <p>{`User one: ${userIdOne}`}</p>}
+            {userIdOne && <p>{`User two: ${userIdTwo}`}</p>}
           </div>
           <button onClick={runCompare}>Compare libraries</button>
         </section>
