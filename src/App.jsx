@@ -2,15 +2,21 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import PlayerSelect from "./components/Main/PlayerSelect";
 import { getUserProfile } from "./utils/getUserProfile";
+import { getUserLibrary } from "./utils/getUserLibrary";
 
 export default function App() {
   const [userLibraries, setUserLibraries] = useState([]);
+  // USER ONE
   const [userIdOne, setUserIdOne] = useState(null);
-  const [userIdTwo, setUserIdTwo] = useState(null);
   const [userOne, setUserOne] = useState(null);
+  const [userOneLibrary, setUserOneLibrary] = useState(null);
+  // USER TWO
+  const [userIdTwo, setUserIdTwo] = useState(null);
   const [userTwo, setUserTwo] = useState(null);
+  const [userTwoLibrary, setUserTwoLibrary] = useState(null);
 
   function runCompare() {
+    getUserLibrary(userIdOne, setUserOneLibrary);
     if (userLibraries.length < 2) {
       alert("input both userIDs");
       return;
