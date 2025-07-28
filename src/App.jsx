@@ -3,6 +3,7 @@ import "./App.css";
 import PlayerSelect from "./components/Main/PlayerSelect";
 import { getUserProfile } from "./utils/getUserProfile";
 import { getUserLibrary } from "./utils/getUserLibrary";
+import { getGameDetails } from "./utils/getGameDetails";
 
 export default function App() {
   const [userLibraries, setUserLibraries] = useState([]);
@@ -17,17 +18,22 @@ export default function App() {
 
   function runCompare() {
     getUserLibrary(userIdOne, setUserOneLibrary);
-    if (userLibraries.length < 2) {
-      alert("input both userIDs");
-      return;
-    }
+    // if (userLibraries.length < 2) {
+    //   alert("input both userIDs");
+    //   return;
+    // }
   }
   useEffect(() => {
-    getUserProfile(userIdOne, setUserOne);
-    getUserProfile(userIdTwo, setUserTwo);
-  }, [userIdOne, userIdTwo]);
+    console.log(userOneLibrary);
+    if (userOneLibrary) getGameDetails(userOneLibrary[13].appid);
+    if (!userOneLibrary) {
+      getUserProfile(userIdOne, setUserOne);
+      getUserProfile(userIdTwo, setUserTwo);
+    }
+  }, [userIdOne, userIdTwo, userOneLibrary]);
 
-  if (userOne) console.log("user:", userOne);
+  if (userOne) console.log("userOne:", userOne);
+  if (userOneLibrary) console.log("userOneLibrary:", userOneLibrary);
   return (
     <>
       <h1>GAME SPINNER</h1>
