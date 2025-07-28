@@ -3,8 +3,5 @@ export async function getUserLibrary(steamID, setLibrary) {
     `https://undecidedgamespinnerserver-production.up.railway.app/library/${steamID}`
   )
     .then((res) => res.json())
-    .then((res) => res.response.games)
-    .then((res) => {
-      console.log(res);
-    });
+    .then((res) => setLibrary(res.response.games));
 }
