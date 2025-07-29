@@ -1,6 +1,9 @@
 import { getUserLibrary } from "./getUserLibrary";
 
 export default async function getAndSetUserLibraries(setLibrary, ...users) {
+  if (!users[0] || !users[1]) alert("Please input two usersIDs");
+  if (users[0].steamid === users[1].steamid)
+    alert("Please input two unique usersIDs");
   console.log(users[0].steamid);
   const lib1 = await getUserLibrary(users[0].steamid);
   const lib2 = await getUserLibrary(users[1].steamid);
