@@ -3,31 +3,38 @@ import "./App.css";
 import PlayerSelect from "./components/Main/PlayerSelect";
 import { getUserProfile } from "./utils/getUserProfile";
 import getAndSetUserLibraries from "./utils/getAndSetUserLibraries";
-import compareLibraries from "./utils/getCommonGames";
+import getCommonGames from "./utils/getCommonGames";
 
 export default function App() {
+  useEffect(() => {
+    console.clear();
+  }, []);
   const [userLibraries, setUserLibraries] = useState([]);
   // USER ONE
-  const [userIdOne, setUserIdOne] = useState(null);
+  const [userIdOne, setUserIdOne] = useState("76561198217411617");
   const [userOne, setUserOne] = useState(null);
   // USER TWO
-  const [userIdTwo, setUserIdTwo] = useState(null);
+  const [userIdTwo, setUserIdTwo] = useState("76561198166759634");
   const [userTwo, setUserTwo] = useState(null);
 
-  function runCompare() {
+  const [commonGames, setCommonGames] = useState(null);
+  async function getLibraries() {
     getAndSetUserLibraries(setUserLibraries, userOne, userTwo);
   }
-
+  async function compareGames() {
+    const commonGames = await getCommonGames(userLibraries);
+    console.log(commonGames);
+    setCommonGames(commonGames);
+  }
+  console.log(commonGames);
   useEffect(() => {
     if (userIdOne) getUserProfile(userIdOne, setUserOne);
     if (userIdTwo) getUserProfile(userIdTwo, setUserTwo);
     console.log("running compare");
-    if (!userLibraries.length) return;
-    if (userLibraries) compareLibraries(userLibraries);
+    if (userLibraries.length) compareGames();
   }, [userIdOne, userIdTwo, userLibraries]);
-  console.log("yippiee", userLibraries);
-  // if (userOne) console.log("userOne:", userOne);
-  // if (userOneLibrary) console.log("userOneLibrary:", userOneLibrary);
+  console.log("common Games 1", commonGames);
+  // console.log("common Games 2", commonGames[0]);
   return (
     <>
       <h1>GAME SPINNER</h1>
@@ -54,18 +61,27 @@ export default function App() {
               </section>
             )}
           </div>
-          <button onClick={runCompare}>Compare libraries</button>
+          <button onClick={getLibraries}>Compare libraries</button>
         </section>
 
-        {/* <section id="common-games">
-          <ul>
-            <li>1</li>
-            <li>2</li>
-            <li>3</li>
-            <li>4</li>
-            <li>5</li>
-          </ul>
-        </section> */}
+        {commonGames && (
+          <section id="common-games">
+            <ul>
+              {commonGames.map((game, i) => {
+                if (!game) return;
+                console.log(game.name);
+                return (
+                  <li key={i}>
+                    <img
+                      src={game.capsule_image}
+                      alt={game.name + " thumbnail"}
+                    />
+                  </li>
+                );
+              })}
+            </ul>
+          </section>
+        )}
       </main>
     </>
   );
