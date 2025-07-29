@@ -2,38 +2,30 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import PlayerSelect from "./components/Main/PlayerSelect";
 import { getUserProfile } from "./utils/getUserProfile";
-import { getUserLibrary } from "./utils/getUserLibrary";
-import { getGameDetails } from "./utils/getGameDetails";
+import getAndSetUserLibraries from "./utils/getAndSetUserLibraries";
+import compareLibraries from "./utils/compareLibraries";
 
 export default function App() {
   const [userLibraries, setUserLibraries] = useState([]);
   // USER ONE
   const [userIdOne, setUserIdOne] = useState(null);
   const [userOne, setUserOne] = useState(null);
-  const [userOneLibrary, setUserOneLibrary] = useState(null);
   // USER TWO
   const [userIdTwo, setUserIdTwo] = useState(null);
   const [userTwo, setUserTwo] = useState(null);
-  const [userTwoLibrary, setUserTwoLibrary] = useState(null);
 
   function runCompare() {
-    getUserLibrary(userIdOne, setUserOneLibrary);
-    // if (userLibraries.length < 2) {
-    //   alert("input both userIDs");
-    //   return;
-    // }
+    getAndSetUserLibraries(setUserLibraries, userOne, userTwo);
   }
-  useEffect(() => {
-    console.log(userOneLibrary);
-    if (userOneLibrary) getGameDetails(userOneLibrary[13].appid);
-    if (!userOneLibrary) {
-      getUserProfile(userIdOne, setUserOne);
-      getUserProfile(userIdTwo, setUserTwo);
-    }
-  }, [userIdOne, userIdTwo, userOneLibrary]);
 
-  if (userOne) console.log("userOne:", userOne);
-  if (userOneLibrary) console.log("userOneLibrary:", userOneLibrary);
+  useEffect(() => {
+    if (userIdOne) getUserProfile(userIdOne, setUserOne);
+    if (userIdTwo) getUserProfile(userIdTwo, setUserTwo);
+    if (userLibraries) compareLibraries(userLibraries);
+  }, [userIdOne, userIdTwo, userLibraries]);
+  console.log("yippiee", userLibraries);
+  // if (userOne) console.log("userOne:", userOne);
+  // if (userOneLibrary) console.log("userOneLibrary:", userOneLibrary);
   return (
     <>
       <h1>GAME SPINNER</h1>
