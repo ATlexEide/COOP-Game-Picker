@@ -1,7 +1,9 @@
-export async function getGameDetails(appID) {
-  return await fetch(
+export default async function getGameDetails(appID) {
+  let game;
+  await fetch(
     `https://undecidedgamespinnerserver-production.up.railway.app/game/${appID}`
   )
     .then((res) => res.json())
-    .then((res) => res[appID].data);
+    .then((res) => (game = res[appID].data));
+  return game;
 }

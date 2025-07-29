@@ -3,7 +3,7 @@ import "./App.css";
 import PlayerSelect from "./components/Main/PlayerSelect";
 import { getUserProfile } from "./utils/getUserProfile";
 import getAndSetUserLibraries from "./utils/getAndSetUserLibraries";
-import compareLibraries from "./utils/compareLibraries";
+import compareLibraries from "./utils/getCommonGames";
 
 export default function App() {
   const [userLibraries, setUserLibraries] = useState([]);
@@ -21,6 +21,8 @@ export default function App() {
   useEffect(() => {
     if (userIdOne) getUserProfile(userIdOne, setUserOne);
     if (userIdTwo) getUserProfile(userIdTwo, setUserTwo);
+    console.log("running compare");
+    if (!userLibraries.length) return;
     if (userLibraries) compareLibraries(userLibraries);
   }, [userIdOne, userIdTwo, userLibraries]);
   console.log("yippiee", userLibraries);
