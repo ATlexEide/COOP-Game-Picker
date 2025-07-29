@@ -1,5 +1,7 @@
+import getGameDetails from "./getGameDetails";
+
 export default async function getCommonGames(library) {
-  console.clear();
+  if (!library) return;
   const [userOneLib, userTwoLib] = library;
   const libOneLength = userOneLib.length;
   const libTwoLength = userTwoLib.length;
@@ -13,13 +15,18 @@ export default async function getCommonGames(library) {
       ? userOneLib.map((game) => game.appid)
       : userTwoLib.map((game) => game.appid);
 
-  const commonLibrary = [];
+  const commonAppIdLibrary = [];
 
-  shortestLib.forEach((game) => {
-    // console.log(game.appid, index);
+  shortestLib.forEach(async (game) => {
     const currGame = game;
-    console.log(currGame);
-    if (longestLib.includes(currGame)) commonLibrary.push(currGame);
+    if (longestLib.includes(currGame)) commonAppIdLibrary.push(currGame);
   });
+
+  const commonLibrary = [];
+  for (let i = 0; i < commonAppIdLibrary.length; i++) {
+    const game = await getGameDetails(commonAppIdLibrary[i]);
+    commonLibrary.push(game);
+  }
+  console.log(commonAppIdLibrary);
   return commonLibrary;
 }
