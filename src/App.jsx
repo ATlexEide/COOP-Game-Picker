@@ -4,6 +4,7 @@ import PlayerSelect from "./components/Main/PlayerSelect";
 import { getUserProfile } from "./utils/getUserProfile";
 import getAndSetUserLibraries from "./utils/getAndSetUserLibraries";
 import getCommonGames from "./utils/getCommonGames";
+import CommonGames from "./components/Main/CommonGames";
 
 export default function App() {
   useEffect(() => {
@@ -64,24 +65,7 @@ export default function App() {
           <button onClick={getLibraries}>Compare libraries</button>
         </section>
 
-        {commonGames && (
-          <section id="common-games">
-            <ul>
-              {commonGames.map((game, i) => {
-                if (!game) return;
-                console.log(game.name);
-                return (
-                  <li key={i}>
-                    <img
-                      src={game.capsule_image}
-                      alt={game.name + " thumbnail"}
-                    />
-                  </li>
-                );
-              })}
-            </ul>
-          </section>
-        )}
+        {commonGames && <CommonGames games={commonGames} />}
       </main>
     </>
   );
