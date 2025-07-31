@@ -38,7 +38,6 @@ export default function App() {
   // console.log("common Games 2", commonGames[0]);
   return (
     <>
-      <h1>GAME SPINNER</h1>
       <main>
         <section id="user-select">
           <div id="userID-input">
