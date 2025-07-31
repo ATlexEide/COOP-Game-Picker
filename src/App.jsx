@@ -10,6 +10,8 @@ export default function App() {
   useEffect(() => {
     console.clear();
   }, []);
+  const [status, setStatus] = useState(null);
+  const [error, setError] = useState(null);
   const [userLibraries, setUserLibraries] = useState([]);
   // USER ONE
   const [userIdOne, setUserIdOne] = useState("76561198217411617");
@@ -20,21 +22,31 @@ export default function App() {
 
   const [commonGames, setCommonGames] = useState(null);
   async function getLibraries() {
-    getAndSetUserLibraries(setUserLibraries, userOne, userTwo);
+    getAndSetUserLibraries(
+      setError,
+      setStatus,
+      setUserLibraries,
+      userOne,
+      userTwo
+    );
   }
   async function compareGames() {
-    const commonGames = await getCommonGames(userLibraries);
-    console.log(commonGames);
+    const commonGames = await getCommonGames(
+      setError,
+      setStatus,
+      userLibraries
+    );
     setCommonGames(commonGames);
+    // setStatus("Done!");
   }
-  console.log(commonGames);
+
   useEffect(() => {
     if (userIdOne) getUserProfile(userIdOne, setUserOne);
     if (userIdTwo) getUserProfile(userIdTwo, setUserTwo);
     console.log("running compare");
     if (userLibraries.length) compareGames();
   }, [userIdOne, userIdTwo, userLibraries]);
-  console.log("common Games 1", commonGames);
+
   // console.log("common Games 2", commonGames[0]);
   return (
     <>
@@ -62,6 +74,8 @@ export default function App() {
             )}
           </div>
           <button onClick={getLibraries}>Compare libraries</button>
+          {status && <p>{status}</p>}
+          {error && <p>{error}</p>}
         </section>
 
         {commonGames && <CommonGames games={commonGames} />}
