@@ -8,7 +8,7 @@ export default function CommonGames({ games }) {
           if (!game) return;
           console.log(game.name);
           return (
-            <li key={i}>
+            <li className="game" key={i}>
               <img src={game.capsule_image} alt={game.name + " thumbnail"} />
             </li>
           );
