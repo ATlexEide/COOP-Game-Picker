@@ -1,7 +1,7 @@
 # CO-OP Game Picker
 ### Find common steam games with your friend to play
 
-> How to play:
+> How to use:
 > - Enter your steam id
 > - Enter a friends steam id
 > - Click compare
