@@ -14,7 +14,8 @@ export default async function getGameDetails(
     const res = await req.json();
     return res[appID].data;
   } catch (error) {
-    if (setError) setError(error);
+    if (!setError) return;
+    setError(error);
     console.log(error);
   }
 }
