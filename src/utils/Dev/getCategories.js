@@ -1,4 +1,4 @@
-import { sampleGames } from "../../data";
+import { sampleGames } from "../../data_sampleGames";
 
 export function getCategories() {
   const arr = [];
