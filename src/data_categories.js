@@ -1,4 +1,22 @@
 export const categories = {
+  Array() {
+    const arr = [];
+    for (const [id, desc] of Object.entries(this)) {
+      if (typeof desc == "string") arr.push({ id, desc });
+    }
+    return arr;
+  },
+  CheckboxArray() {
+    const ignoredIDs = [
+      8, 10, 15, 16, 17, 19, 22, 23, 25, 29, 35, 40, 51, 61, 63, 68, 69, 70
+    ];
+    const arr = [];
+    for (const [key, value] of Object.entries(this)) {
+      if (typeof value == "string" && !ignoredIDs.includes(Number(key)))
+        arr.push({ id: key, desc: value });
+    }
+    return arr;
+  },
   1: "Multi-player",
   2: "Single-player",
   8: "Valve Anti-Cheat enabled",
