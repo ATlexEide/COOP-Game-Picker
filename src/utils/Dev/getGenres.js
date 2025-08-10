@@ -1,4 +1,5 @@
-import { games } from "../../data";
+import { sampleGames } from "../../data";
+
 export function getGenres() {
   let currGenreID = 0;
   while (currGenreID < 100) {
@@ -11,7 +12,7 @@ function checkGenres(i) {
   const hasGenre = (genre) => genre.id == i;
   let isFound = false;
   let genreName = "";
-  games.forEach((game) => {
+  sampleGames.forEach((game) => {
     if (isFound) return;
     if (!game) return;
     if (!game.genres) return;
