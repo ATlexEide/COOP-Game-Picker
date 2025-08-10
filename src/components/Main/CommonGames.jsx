@@ -1,6 +1,7 @@
 import "./CommonGames.css";
 
 export default function CommonGames({ games }) {
+  console.log(games);
   return (
     <section id="common-games">
       <ul>
