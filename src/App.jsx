@@ -5,26 +5,42 @@ import { getUserProfile } from "./utils/getUserProfile";
 import getAndSetUserLibraries from "./utils/getAndSetUserLibraries";
 import getCommonGames from "./utils/getCommonGames";
 import CommonGames from "./components/Main/CommonGames";
-
-import { games } from "./data";
+import { getDetailedLibrary } from "./utils/Dev/getDetailedLibrary";
+import { getCategories } from "./utils/Dev/getCategories";
+import { getGenres } from "./utils/Dev/getGenres";
 
 export default function App() {
   // TEMP
   useEffect(() => {
     // console.clear();
-    console.log(games.length);
-    let counter = 0;
-    games.forEach((game) => {
-      if (!game) return;
-      if (game.categories.find((e) => e.id === 9)) {
-        console.log(game.name);
-        console.log(game.categories);
-        counter++;
-      }
-      console.log(counter);
-    });
+    // let counter = 0;
+    // games.forEach((game) => {
+    //   if (!game) return;
+    //   if (game.categories.find((e) => e.id === 44)) {
+    //     console.log(game.name);
+    //     console.log(game.categories);
+    //     counter++;
+    //   }
+    // });
+    //     const selectedCategories = [2, 1, 9, 63];
+    //     const categoryNames = selectedCategories.forEach(e=> return )
+    //  console.log("Selected: ")
+    //     console.log(games[1].categories);
+    //     const filtered = games.filter((game) => {
+    //       if (!game) return;
+    //       let isValid = true;
+    //       selectedCategories.forEach((category) => {
+    //         if (!isValid) return;
+    //         if (game.categories.includes(category)) isValid = false;
+    //       });
+    //       if (isValid) return game;
+    //     });
+    //     console.log(games.length);
+    //     console.log(filtered.length);
+    //     console.log(filtered[0].categories);
+    // _getLibrary();
+    console.log(getDetailedLibrary("76561198077708670", "logEnabled"));
   }, []);
-  //
 
   const [status, setStatus] = useState(null);
   const [error, setError] = useState(null);
