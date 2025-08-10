@@ -6,10 +6,26 @@ import getAndSetUserLibraries from "./utils/getAndSetUserLibraries";
 import getCommonGames from "./utils/getCommonGames";
 import CommonGames from "./components/Main/CommonGames";
 
+import { games } from "./data";
+
 export default function App() {
+  // TEMP
   useEffect(() => {
-    console.clear();
+    // console.clear();
+    console.log(games.length);
+    let counter = 0;
+    games.forEach((game) => {
+      if (!game) return;
+      if (game.categories.find((e) => e.id === 9)) {
+        console.log(game.name);
+        console.log(game.categories);
+        counter++;
+      }
+      console.log(counter);
+    });
   }, []);
+  //
+
   const [status, setStatus] = useState(null);
   const [error, setError] = useState(null);
   const [userLibraries, setUserLibraries] = useState([]);
@@ -21,15 +37,18 @@ export default function App() {
   const [userTwo, setUserTwo] = useState(null);
 
   const [commonGames, setCommonGames] = useState(null);
+
   async function getLibraries() {
-    getAndSetUserLibraries(
+    await getAndSetUserLibraries(
       setError,
       setStatus,
       setUserLibraries,
       userOne,
       userTwo
     );
+    compareGames();
   }
+
   async function compareGames() {
     const commonGames = await getCommonGames(
       setError,
@@ -43,9 +62,7 @@ export default function App() {
   useEffect(() => {
     if (userIdOne) getUserProfile(userIdOne, setUserOne);
     if (userIdTwo) getUserProfile(userIdTwo, setUserTwo);
-    console.log("running compare");
-    if (userLibraries.length) compareGames();
-  }, [userIdOne, userIdTwo, userLibraries]);
+  }, [userIdOne, userIdTwo]);
 
   // console.log("common Games 2", commonGames[0]);
   return (
