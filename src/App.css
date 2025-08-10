@@ -34,3 +34,17 @@ main {
   display: flex;
   flex-direction: column;
 }
+
+#status-text {
+  white-space: pre;
+}
+.container_c1e950 {
+  width: 100%;
+}
+.inner_7e9787 {
+  width: 100%;
+}
+
+#user-select .container_c1e950:last-child {
+  rotate: 180deg;
+}
