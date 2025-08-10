@@ -1,9 +1,11 @@
 import getGameDetails from "./getGameDetails";
 
 export default async function getCommonGames(setError, setStatus, library) {
-  if (!library) return;
+  if (!library) {
+    setError("Failed to find common games");
+    return;
+  }
   setStatus("Finding Common Games");
-  console.log("Finding Common Games");
   const [userOneLib, userTwoLib] = library;
   const libOneLength = userOneLib.length;
   const libTwoLength = userTwoLib.length;
@@ -27,11 +29,11 @@ export default async function getCommonGames(setError, setStatus, library) {
   const commonLibrary = [];
   for (let i = 0; i < commonAppIdLibrary.length; i++) {
     const game = await getGameDetails(
+      commonAppIdLibrary[i],
       setStatus,
       setError,
-      i + 1,
-      commonAppIdLibrary.length,
-      commonAppIdLibrary[i]
+      i,
+      commonAppIdLibrary.length
     );
     commonLibrary.push(game);
   }
