@@ -1,3 +1,6 @@
+import { Zoomies } from "ldrs/react";
+import "ldrs/react/Zoomies.css";
+
 import { useEffect, useState } from "react";
 import "./App.css";
 import PlayerSelect from "./components/Main/PlayerSelect";
@@ -40,6 +43,13 @@ export default function App() {
 
   const [commonGames, setCommonGames] = useState(null);
 
+  function clearUser(player) {
+    const id = `setUserId${player}(null)`;
+    const profile = `setUser${player}(null)`;
+    eval(id);
+    eval(profile);
+  }
+
   async function getLibraries() {
     await getAndSetUserLibraries(
       setError,
@@ -78,9 +88,19 @@ export default function App() {
         </ul>
         <section id="user-select">
           <div id="userID-input">
-            <PlayerSelect setUserId={setUserIdOne} text="User One" />
+            <PlayerSelect
+              setUserId={setUserIdOne}
+              player={"One"}
+              text="User One"
+              clearUser={clearUser}
+            />
             <p></p>
-            <PlayerSelect setUserId={setUserIdTwo} text="User Two" />
+            <PlayerSelect
+              setUserId={setUserIdTwo}
+              player={"Two"}
+              text="User Two"
+              clearUser={clearUser}
+            />
           </div>
           <div id="selected-userID-text">
             {userOne !== null && (
@@ -129,10 +149,28 @@ export default function App() {
               </section>
             </div>
           )}
-          {status && !error && <p>{status}</p>}
+          {status && !error && (
+            <>
+              <Zoomies
+                size="150"
+                stroke="3"
+                bgOpacity="0.1"
+                speed="1.1"
+                color="white"
+              />
+              <p id="status-text">{status}</p>
+              <Zoomies
+                id="zoomies-reverse"
+                size="150"
+                stroke="3"
+                bgOpacity="0.1"
+                speed="1.1"
+                color="white"
+              />
+            </>
+          )}
           {error && <p>{error}</p>}
         </section>
-
         {commonGames && <CommonGames games={commonGames} />}
       </main>
     </>
