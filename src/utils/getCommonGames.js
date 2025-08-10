@@ -27,16 +27,23 @@ export default async function getCommonGames(setError, setStatus, library) {
   });
 
   const commonLibrary = [];
+  let skippedGamesCounter = 0;
   for (let i = 0; i < commonAppIdLibrary.length; i++) {
     const game = await getGameDetails(
       commonAppIdLibrary[i],
       setStatus,
       setError,
       i,
-      commonAppIdLibrary.length
+      commonAppIdLibrary.length,
+      skippedGamesCounter
     );
+    if (!game) {
+      skippedGamesCounter++;
+      commonAppIdLibrary.length;
+    }
     commonLibrary.push(game);
   }
   console.log(commonAppIdLibrary);
+  setStatus("");
   return commonLibrary;
 }
