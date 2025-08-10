@@ -7,8 +7,10 @@ export default async function getAndSetUserLibraries(
   ...users
 ) {
   if (!users[0] || !users[1]) alert("Please input two usersIDs");
-  if (users[0].steamid === users[1].steamid)
+  if (users[0].steamid === users[1].steamid) {
     alert("Please input two unique usersIDs");
+    return;
+  }
 
   setStatus("Getting libraries");
   console.log("Getting libraries");
@@ -17,4 +19,5 @@ export default async function getAndSetUserLibraries(
   const lib2 = await getUserLibrary(users[1].steamid, setError);
   if (!lib2 || !lib2.length) throw new Error("Couldnt get user2 library");
   if (lib1 && lib2) setLibrary([lib1, lib2]);
+  setStatus("");
 }
