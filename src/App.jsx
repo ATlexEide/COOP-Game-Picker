@@ -6,50 +6,36 @@ import getAndSetUserLibraries from "./utils/getAndSetUserLibraries";
 import getCommonGames from "./utils/getCommonGames";
 import CommonGames from "./components/Main/CommonGames";
 import { getDetailedLibrary } from "./utils/Dev/getDetailedLibrary";
+import { getUserLibrary } from "./utils/getUserLibrary";
 import { getCategories } from "./utils/Dev/getCategories";
 import { getGenres } from "./utils/Dev/getGenres";
+
+import { genres } from "./data_genres";
+import { categories } from "./data_categories";
+import { sampleGames } from "./data_sampleGames";
 
 export default function App() {
   // TEMP
   useEffect(() => {
-    // console.clear();
-    // let counter = 0;
-    // games.forEach((game) => {
-    //   if (!game) return;
-    //   if (game.categories.find((e) => e.id === 44)) {
-    //     console.log(game.name);
-    //     console.log(game.categories);
-    //     counter++;
-    //   }
-    // });
-    //     const selectedCategories = [2, 1, 9, 63];
-    //     const categoryNames = selectedCategories.forEach(e=> return )
-    //  console.log("Selected: ")
-    //     console.log(games[1].categories);
-    //     const filtered = games.filter((game) => {
-    //       if (!game) return;
-    //       let isValid = true;
-    //       selectedCategories.forEach((category) => {
-    //         if (!isValid) return;
-    //         if (game.categories.includes(category)) isValid = false;
-    //       });
-    //       if (isValid) return game;
-    //     });
-    //     console.log(games.length);
-    //     console.log(filtered.length);
-    //     console.log(filtered[0].categories);
-    // _getLibrary();
-    console.log(getDetailedLibrary("76561198077708670", "logEnabled"));
+    console.log("UserLibs ", userLibraries);
+    console.log("UserOne ", userOne);
+    console.log("UserTwo ", userTwo);
   }, []);
+  async function logLib() {
+    const _lib = await getUserLibrary("76561197988759223");
+    console.log(_lib);
+  }
 
   const [status, setStatus] = useState(null);
   const [error, setError] = useState(null);
   const [userLibraries, setUserLibraries] = useState([]);
+  const [_categories, setCategories] = useState(categories.CheckboxArray());
+  const [_genres, setGenres] = useState(genres.CheckboxArray());
   // USER ONE
-  const [userIdOne, setUserIdOne] = useState("76561198217411617");
+  const [userIdOne, setUserIdOne] = useState(null);
   const [userOne, setUserOne] = useState(null);
   // USER TWO
-  const [userIdTwo, setUserIdTwo] = useState("76561198166759634");
+  const [userIdTwo, setUserIdTwo] = useState(null);
   const [userTwo, setUserTwo] = useState(null);
 
   const [commonGames, setCommonGames] = useState(null);
@@ -62,7 +48,6 @@ export default function App() {
       userOne,
       userTwo
     );
-    compareGames();
   }
 
   async function compareGames() {
@@ -76,14 +61,21 @@ export default function App() {
   }
 
   useEffect(() => {
-    if (userIdOne) getUserProfile(userIdOne, setUserOne);
-    if (userIdTwo) getUserProfile(userIdTwo, setUserTwo);
-  }, [userIdOne, userIdTwo]);
+    if (!userOne && userIdOne) getUserProfile(userIdOne, setUserOne);
+    if (!userTwo && userIdTwo) getUserProfile(userIdTwo, setUserTwo);
+    if (userOne && userTwo) getLibraries();
+  }, [userIdOne, userIdTwo, userOne, userTwo]);
 
   // console.log("common Games 2", commonGames[0]);
   return (
     <>
       <main>
+        <h2>Temp IDs for DEV</h2>
+        <ul>
+          <li>Alex: 76561198166759634</li>
+          <li>Chooie: 76561198269275836</li>
+          <li>Lenni: 76561198217411617</li>
+        </ul>
         <section id="user-select">
           <div id="userID-input">
             <PlayerSelect setUserId={setUserIdOne} text="User One" />
@@ -91,7 +83,7 @@ export default function App() {
             <PlayerSelect setUserId={setUserIdTwo} text="User Two" />
           </div>
           <div id="selected-userID-text">
-            {userOne && (
+            {userOne !== null && (
               <section className="user-info">
                 <h1>{userOne.personaname}</h1>
                 <img src={userOne.avatarfull} alt="" />
@@ -106,8 +98,38 @@ export default function App() {
               </section>
             )}
           </div>
-          <button onClick={getLibraries}>Compare libraries</button>
-          {status && <p>{status}</p>}
+          {userOne && userTwo && Boolean(userLibraries.length) && (
+            <button onClick={compareGames}>Compare libraries</button>
+          )}
+          {commonGames && (
+            <div>
+              <section>
+                <h2>Genres</h2>
+                <hr />
+                {_genres.map((genre, i) => (
+                  <div key={i}>
+                    <label htmlFor={genre.id}>{genre.desc}</label>
+                    <input
+                      type="checkbox"
+                      name={genre.description}
+                      id={genre.id}
+                    />
+                  </div>
+                ))}
+              </section>
+              <section>
+                <h2>Categories</h2>
+                <hr />
+                {_categories.map((cat, i) => (
+                  <div key={i}>
+                    <label htmlFor={cat.id}>{cat.desc}</label>
+                    <input type="checkbox" name={cat.description} id={cat.id} />
+                  </div>
+                ))}
+              </section>
+            </div>
+          )}
+          {status && !error && <p>{status}</p>}
           {error && <p>{error}</p>}
         </section>
 
