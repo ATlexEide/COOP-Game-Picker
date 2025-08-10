@@ -1,12 +1,12 @@
 export default async function getGameDetails(
+  appID,
   setStatus,
   setError,
   currentGame,
-  totalGames,
-  appID
+  totalGames
 ) {
-  setStatus(`Getting game details [${currentGame}/${totalGames}]`);
-  console.log("Getting game details");
+  if (setStatus)
+    setStatus(`Getting game details [${currentGame}/${totalGames}]`);
   try {
     const req = await fetch(
       `http://undecidedgamespinnerserver-production.up.railway.app/game/${appID}`
@@ -14,7 +14,7 @@ export default async function getGameDetails(
     const res = await req.json();
     return res[appID].data;
   } catch (error) {
-    setError(error);
+    if (setError) setError(error);
     console.log(error);
   }
 }
