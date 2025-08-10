@@ -3,10 +3,14 @@ export default async function getGameDetails(
   setStatus,
   setError,
   currentGame,
-  totalGames
+  totalGames,
+  skippedGamesCounter
 ) {
   if (setStatus)
-    setStatus(`Getting game details [${currentGame}/${totalGames}]`);
+    setStatus(
+      `Getting game details [${currentGame}/${totalGames}]
+Skipped games: ${skippedGamesCounter}`
+    );
   try {
     const req = await fetch(
       `http://undecidedgamespinnerserver-production.up.railway.app/game/${appID}`
