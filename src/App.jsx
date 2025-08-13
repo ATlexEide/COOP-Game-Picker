@@ -1,21 +1,17 @@
-import { Zoomies } from "ldrs/react";
-import "ldrs/react/Zoomies.css";
+import { sampleGames } from "./data_sampleGames";
 
 import { useEffect, useState } from "react";
-import "./App.css";
 import PlayerSelect from "./components/Main/PlayerSelect";
 import { getUserProfile } from "./utils/getUserProfile";
 import getAndSetUserLibraries from "./utils/getAndSetUserLibraries";
 import getCommonGames from "./utils/getCommonGames";
 import CommonGames from "./components/Main/CommonGames";
-import { getDetailedLibrary } from "./utils/Dev/getDetailedLibrary";
 import { getUserLibrary } from "./utils/getUserLibrary";
-import { getCategories } from "./utils/Dev/getCategories";
-import { getGenres } from "./utils/Dev/getGenres";
+import Filter from "./components/Filter";
 
-import { genres } from "./data_genres";
-import { categories } from "./data_categories";
-import { sampleGames } from "./data_sampleGames";
+import { Zoomies } from "ldrs/react";
+import "ldrs/react/Zoomies.css";
+import "./App.css";
 
 export default function App() {
   // TEMP
@@ -32,8 +28,7 @@ export default function App() {
   const [status, setStatus] = useState(null);
   const [error, setError] = useState(null);
   const [userLibraries, setUserLibraries] = useState([]);
-  const [_categories, setCategories] = useState(categories.CheckboxArray());
-  const [_genres, setGenres] = useState(genres.CheckboxArray());
+
   // USER ONE
   const [userIdOne, setUserIdOne] = useState(null);
   const [userOne, setUserOne] = useState(null);
@@ -41,7 +36,7 @@ export default function App() {
   const [userIdTwo, setUserIdTwo] = useState(null);
   const [userTwo, setUserTwo] = useState(null);
 
-  const [commonGames, setCommonGames] = useState(null);
+  const [commonGames, setCommonGames] = useState(sampleGames);
 
   function clearUser(player) {
     const id = `setUserId${player}(null)`;
@@ -121,34 +116,6 @@ export default function App() {
           {userOne && userTwo && Boolean(userLibraries.length) && (
             <button onClick={compareGames}>Compare libraries</button>
           )}
-          {commonGames && (
-            <div>
-              <section>
-                <h2>Genres</h2>
-                <hr />
-                {_genres.map((genre, i) => (
-                  <div key={i}>
-                    <label htmlFor={genre.id}>{genre.desc}</label>
-                    <input
-                      type="checkbox"
-                      name={genre.description}
-                      id={genre.id}
-                    />
-                  </div>
-                ))}
-              </section>
-              <section>
-                <h2>Categories</h2>
-                <hr />
-                {_categories.map((cat, i) => (
-                  <div key={i}>
-                    <label htmlFor={cat.id}>{cat.desc}</label>
-                    <input type="checkbox" name={cat.description} id={cat.id} />
-                  </div>
-                ))}
-              </section>
-            </div>
-          )}
           {status && !error && (
             <>
               <Zoomies
@@ -171,6 +138,7 @@ export default function App() {
           )}
           {error && <p>{error}</p>}
         </section>
+        {commonGames && <Filter />}
         {commonGames && <CommonGames games={commonGames} />}
       </main>
     </>
