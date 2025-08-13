@@ -38,7 +38,7 @@ function handleFilterUpdate(target, filter, setFilter) {
   // Genres or Categories
   const type =
     target.parentElement.parentElement.parentElement.parentElement.id;
-  const id = target.id;
+  const id = target.id.split("-")[1];
   console.log(filter[type][id]);
   console.log(eval(filter[`${type}Count`]));
   const typeCountKey = eval(filter[`${type}Count`]);
@@ -97,11 +97,11 @@ export default function Filter({ setCommonGames }) {
           <ul>
             {genres.map((genre, i) => (
               <li key={i}>
-                <label htmlFor={genre.id}>{genre.desc}</label>
+                <label htmlFor={`genre-${genre.id}`}>{genre.desc}</label>
                 <input
                   type="checkbox"
                   name={genre.description}
-                  id={genre.id}
+                  id={`genre-${genre.id}`}
                   checked={filter.genres[genre.id]}
                   onChange={(e) => {
                     console.log(genre.id);
@@ -121,11 +121,11 @@ export default function Filter({ setCommonGames }) {
           <ul>
             {categories.map((cat, i) => (
               <li key={i}>
-                <label htmlFor={cat.id}>{cat.desc}</label>
+                <label htmlFor={`category-${cat.id}`}>{cat.desc}</label>
                 <input
                   type="checkbox"
                   name={cat.description}
-                  id={cat.id}
+                  id={`category-${cat.id}`}
                   checked={filter.categories[cat.id]}
                   onChange={(e) => {
                     handleFilterUpdate(e.target, filter, setFilter);
