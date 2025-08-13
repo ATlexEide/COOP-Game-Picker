@@ -2,7 +2,7 @@ import { genres as _genres } from "../data_genres";
 import { categories as _categories } from "../data_categories";
 
 import "./Filter.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function updateFilters() {}
 
@@ -11,12 +11,18 @@ function handleFilterUpdate(target, filter, setFilter) {
   const type =
     target.parentElement.parentElement.parentElement.parentElement.id;
   const id = target.id;
+  console.log(filter[type][id]);
+  const countChange = filter[type][id]
+    ? filter.filterCount - 1
+    : filter.filterCount + 1;
+
   setFilter({
     ...filter,
     [type]: {
       ...filter[type],
       [id]: !filter[type][id]
-    }
+    },
+    filterCount: countChange
   });
 }
 
@@ -35,8 +41,13 @@ export default function Filter() {
     for (const [key, value] of Object.entries(_categories)) {
       categoryObj[key] = false;
     }
-    return { genres: genreObj, categories: categoryObj };
+    return { filterCount: 0, genres: genreObj, categories: categoryObj };
   }
+
+  useEffect(() => {
+    if (!filter.filterCount) return;
+    updateFilters();
+  }, [filter]);
 
   console.log(filter);
   return (
