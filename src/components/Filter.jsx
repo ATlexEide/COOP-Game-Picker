@@ -4,7 +4,12 @@ import { categories as _categories } from "../data_categories";
 import "./Filter.css";
 import { useEffect, useState } from "react";
 
-function updateFilters() {}
+function updateFilters(filter) {
+  console.clear();
+  for (const [key, value] of Object.entries(filter.genres)) {
+    if (value) console.log(key);
+  }
+}
 
 function handleFilterUpdate(target, filter, setFilter) {
   // Genres or Categories
@@ -46,7 +51,7 @@ export default function Filter() {
 
   useEffect(() => {
     if (!filter.filterCount) return;
-    updateFilters();
+    updateFilters(filter);
   }, [filter]);
 
   console.log(filter);
