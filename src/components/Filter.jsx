@@ -5,18 +5,22 @@ import "./Filter.css";
 import { useEffect, useState } from "react";
 
 function updateFilters(filter) {
-  console.clear();
+  // console.clear();
   for (const [key, value] of Object.entries(filter.genres)) {
     if (value) console.log(key);
   }
 }
 
 function handleFilterUpdate(target, filter, setFilter) {
+  console.clear();
   // Genres or Categories
   const type =
     target.parentElement.parentElement.parentElement.parentElement.id;
   const id = target.id;
   console.log(filter[type][id]);
+  console.log(eval(filter[`${type}Count`]));
+  const typeCountKey = eval(filter[`${type}Count`]);
+  const typeCountValue = filter[type][id] ? typeCountKey - 1 : typeCountKey + 1;
   const countChange = filter[type][id]
     ? filter.filterCount - 1
     : filter.filterCount + 1;
@@ -27,7 +31,7 @@ function handleFilterUpdate(target, filter, setFilter) {
       ...filter[type],
       [id]: !filter[type][id]
     },
-    filterCount: countChange
+    [`${type}Count`]: typeCountValue
   });
 }
 
@@ -46,15 +50,25 @@ export default function Filter() {
     for (const [key, value] of Object.entries(_categories)) {
       categoryObj[key] = false;
     }
-    return { filterCount: 0, genres: genreObj, categories: categoryObj };
+    return {
+      genresCount: 0,
+      categoriesCount: 0,
+      genres: genreObj,
+      categories: categoryObj,
+      getFilterCount() {
+        return this.genresCount + this.categoriesCount;
+      }
+    };
   }
 
   useEffect(() => {
-    if (!filter.filterCount) return;
+    if (!filter.getFilterCount()) return;
     updateFilters(filter);
   }, [filter]);
 
-  console.log(filter);
+  console.table(filter);
+  console.log("Get filtercount");
+  console.log(filter.getFilterCount());
   return (
     <div id="filter">
       <section id="genres">
@@ -89,7 +103,15 @@ export default function Filter() {
             {categories.map((cat, i) => (
               <li key={i}>
                 <label htmlFor={cat.id}>{cat.desc}</label>
-                <input type="checkbox" name={cat.description} id={cat.id} />
+                <input
+                  type="checkbox"
+                  name={cat.description}
+                  id={cat.id}
+                  checked={filter.genres[cat.id]}
+                  onChange={(e) => {
+                    handleFilterUpdate(e.target, filter, setFilter);
+                  }}
+                />
               </li>
             ))}
           </ul>
