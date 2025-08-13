@@ -5,14 +5,13 @@ import "./Filter.css";
 import { useEffect, useState } from "react";
 
 function updateFilters(filter) {
-  // console.clear();
+  console.clear();
   for (const [key, value] of Object.entries(filter.genres)) {
     if (value) console.log(key);
   }
 }
 
 function handleFilterUpdate(target, filter, setFilter) {
-  console.clear();
   // Genres or Categories
   const type =
     target.parentElement.parentElement.parentElement.parentElement.id;
@@ -21,9 +20,6 @@ function handleFilterUpdate(target, filter, setFilter) {
   console.log(eval(filter[`${type}Count`]));
   const typeCountKey = eval(filter[`${type}Count`]);
   const typeCountValue = filter[type][id] ? typeCountKey - 1 : typeCountKey + 1;
-  const countChange = filter[type][id]
-    ? filter.filterCount - 1
-    : filter.filterCount + 1;
 
   setFilter({
     ...filter,
