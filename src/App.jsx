@@ -138,7 +138,7 @@ export default function App() {
           )}
           {error && <p>{error}</p>}
         </section>
-        {commonGames && <Filter />}
+        {commonGames && <Filter setCommonGames={setCommonGames} />}
         {commonGames && <CommonGames games={commonGames} />}
       </main>
     </>
