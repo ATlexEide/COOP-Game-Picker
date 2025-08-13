@@ -13,7 +13,7 @@ Skipped games: ${skippedGamesCounter}`
     );
   try {
     const req = await fetch(
-      `http://undecidedgamespinnerserver-production.up.railway.app/game/${appID}`
+      `${import.meta.env.VITE_SERVER_BASE_URL}/game/${appID}`
     );
     const res = await req.json();
     return res[appID].data;

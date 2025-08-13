@@ -1,6 +1,6 @@
 export async function getUserLibrary(steamID, setError) {
   return await fetch(
-    `http://undecidedgamespinnerserver-production.up.railway.app/library/${steamID}`
+    `${import.meta.env.VITE_SERVER_BASE_URL}/library/${steamID}`
   )
     .then((res) => res.json())
     .then((res) => res.response.games)
