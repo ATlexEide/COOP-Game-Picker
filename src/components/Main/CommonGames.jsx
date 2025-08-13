@@ -7,7 +7,6 @@ export default function CommonGames({ games }) {
       <ul>
         {games.map((game, i) => {
           if (!game) return;
-          console.log(game.name);
           return (
             <li className="game" key={i}>
               <img src={game.capsule_image} alt={game.name + " thumbnail"} />
