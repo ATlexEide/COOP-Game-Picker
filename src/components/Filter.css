@@ -1,0 +1,20 @@
+#filter {
+  width: 100%;
+  padding: 20px 0;
+}
+
+#filter details {
+  width: 100%;
+}
+
+#genres ul,
+#categories ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+#filter li {
+  display: flex;
+  gap: 5px;
+}
