@@ -1,14 +1,36 @@
-import { genres as _genres } from "../data_genres";
+import { genres as _genres, genres } from "../data_genres";
 import { categories as _categories } from "../data_categories";
+
+import { sampleGames } from "../data_sampleGames";
 
 import "./Filter.css";
 import { useEffect, useState } from "react";
 
 function updateFilters(filter) {
+  let filtered = sampleGames;
   console.clear();
-  for (const [key, value] of Object.entries(filter.genres)) {
-    if (value) console.log(key);
+  if (filter.genresCount) {
+    for (const [id, value] of Object.entries(filter.genres)) {
+      console.log(id);
+      if (value)
+        filtered = filtered.filter((game) => {
+          if (!game) return;
+          if (!game.genres) return;
+          return game.genres.some((obj) => obj.id === id);
+        });
+    }
   }
+  if (filter.categoriesCount) {
+    for (const [id, value] of Object.entries(filter.categories)) {
+      if (value)
+        filtered = filtered.filter((game) => {
+          if (!game) return;
+          if (!game.categories) return;
+          return game.categories.some((obj) => obj.id === Number(id));
+        });
+    }
+  }
+  console.log(filtered);
 }
 
 function handleFilterUpdate(target, filter, setFilter) {
@@ -103,7 +125,7 @@ export default function Filter() {
                   type="checkbox"
                   name={cat.description}
                   id={cat.id}
-                  checked={filter.genres[cat.id]}
+                  checked={filter.categories[cat.id]}
                   onChange={(e) => {
                     handleFilterUpdate(e.target, filter, setFilter);
                   }}
