@@ -6,6 +6,14 @@
   gap: 7px;
 }
 
+#player-select input {
+  background-color: #2a475e;
+  border: solid 1px rgba(255, 255, 255, 0.557);
+  height: 24px;
+  border-radius: 3px;
+  padding: 10px;
+}
+
 #player-select .mono-button {
   width: 40%;
   font-family: "Sometype Mono", monospace;
