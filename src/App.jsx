@@ -114,9 +114,14 @@ export default function App() {
               </section>
             )}
           </div>
-          {userOne && userTwo && Boolean(userLibraries.length) && (
-            <button onClick={compareGames}>Compare libraries</button>
-          )}
+          {userOne &&
+            userTwo &&
+            !commonGames &&
+            Boolean(userLibraries.length) && (
+              <button id="compare-btn" onClick={compareGames}>
+                Compare libraries
+              </button>
+            )}
           {status && !error && (
             <>
               <Zoomies
