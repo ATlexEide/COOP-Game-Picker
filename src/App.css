@@ -16,18 +16,19 @@ main {
 
 #userID-input {
   display: flex;
-  gap: 120px;
+  justify-content: space-around;
 }
 
 #user-select {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  width: 80%;
 }
 
 #selected-userID-text {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .user-info {
