@@ -1,7 +1,9 @@
 #common-games {
+  min-height: 80svh;
+  height: fit-content;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: start;
   max-width: 100%;
 }
 
