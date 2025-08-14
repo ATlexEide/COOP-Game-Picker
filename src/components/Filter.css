@@ -30,3 +30,9 @@
   display: flex;
   gap: 5px;
 }
+
+#filter li,
+#filter li * {
+  user-select: none;
+  cursor: pointer;
+}
