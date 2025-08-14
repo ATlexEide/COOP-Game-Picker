@@ -95,7 +95,6 @@ export default function Filter({ commonGames, setFilteredGames }) {
           </ul>
         </details>
       </section>
-      <button onClick={updateFilters}>Apply Filter</button>
     </div>
   );
 }
