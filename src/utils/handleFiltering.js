@@ -1,7 +1,7 @@
-import { sampleGames } from "../data_sampleGames";
+// import { sampleGames } from "../data_sampleGames";
 
-export function updateFilters(filter, setCommonGames) {
-  let filtered = sampleGames;
+export function updateFilters(filter, commonGames, setFilteredGames) {
+  let filtered = commonGames;
   console.clear();
   if (filter.genresCount) {
     for (const [id, value] of Object.entries(filter.genres)) {
@@ -25,7 +25,7 @@ export function updateFilters(filter, setCommonGames) {
     }
   }
   console.log(filtered);
-  setCommonGames(filtered);
+  setFilteredGames(filtered);
 }
 
 export function handleFilterUpdate(target, filter, setFilter) {

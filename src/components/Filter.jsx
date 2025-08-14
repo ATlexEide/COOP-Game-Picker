@@ -6,7 +6,7 @@ import { handleFilterUpdate, updateFilters } from "../utils/handleFiltering";
 import "./Filter.css";
 import { useEffect, useState } from "react";
 
-export default function Filter({ setCommonGames }) {
+export default function Filter({ commonGames, setFilteredGames }) {
   const categories = _categories.CheckboxArray();
   const genres = _genres.CheckboxArray();
 
@@ -33,8 +33,11 @@ export default function Filter({ setCommonGames }) {
   }
 
   useEffect(() => {
-    if (!filter.getFilterCount()) return;
-    updateFilters(filter, setCommonGames);
+    if (!filter.getFilterCount()) {
+      setFilteredGames(null);
+      return;
+    }
+    updateFilters(filter, commonGames, setFilteredGames);
   }, [filter]);
 
   console.table(filter);

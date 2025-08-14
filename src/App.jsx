@@ -36,7 +36,8 @@ export default function App() {
   const [userIdTwo, setUserIdTwo] = useState(null);
   const [userTwo, setUserTwo] = useState(null);
 
-  const [commonGames, setCommonGames] = useState(sampleGames);
+  const [commonGames, setCommonGames] = useState(null);
+  const [filteredGames, setFilteredGames] = useState(null);
 
   function clearUser(player) {
     const id = `setUserId${player}(null)`;
@@ -138,8 +139,14 @@ export default function App() {
           )}
           {error && <p>{error}</p>}
         </section>
-        {commonGames && <Filter setCommonGames={setCommonGames} />}
-        {commonGames && <CommonGames games={commonGames} />}
+        {commonGames && (
+          <Filter
+            setFilteredGames={setFilteredGames}
+            commonGames={commonGames}
+          />
+        )}
+        {!filteredGames && commonGames && <CommonGames games={commonGames} />}
+        {filteredGames && <CommonGames games={filteredGames} />}
       </main>
     </>
   );
