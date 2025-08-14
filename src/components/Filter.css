@@ -7,14 +7,26 @@
   width: 100%;
 }
 
-#genres ul,
-#categories ul {
+#filter details summary {
+  padding: 0 0 24px 0;
+}
+
+#filter details[open] summary {
+  padding: 0;
+}
+
+#filter ul {
+  padding: 24px 0;
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
 }
 
 #filter li {
+  background-color: white;
+  color: black;
+  padding: 5px;
+  border-radius: 7px;
   display: flex;
   gap: 5px;
 }
