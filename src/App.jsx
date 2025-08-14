@@ -40,6 +40,7 @@ export default function App() {
   const [filteredGames, setFilteredGames] = useState(null);
 
   function clearUser(player) {
+    setCommonGames(null);
     const id = `setUserId${player}(null)`;
     const profile = `setUser${player}(null)`;
     eval(id);
@@ -117,6 +118,7 @@ export default function App() {
           {userOne &&
             userTwo &&
             !commonGames &&
+            !status &&
             Boolean(userLibraries.length) && (
               <button id="compare-btn" onClick={compareGames}>
                 Compare libraries
