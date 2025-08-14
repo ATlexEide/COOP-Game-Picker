@@ -23,12 +23,20 @@
 }
 
 #filter li {
-  background-color: white;
-  color: black;
+  background-color: #575861;
+  color: #f7f7f7;
   padding: 5px;
   border-radius: 7px;
   display: flex;
   gap: 5px;
+}
+
+#filter .isActive {
+  background-color: #66c0f4;
+}
+
+#filter input[type="checkbox"] {
+  display: none;
 }
 
 #filter li,

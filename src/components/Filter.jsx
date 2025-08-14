@@ -52,7 +52,7 @@ export default function Filter({ commonGames, setFilteredGames }) {
           <hr />
           <ul>
             {genres.map((genre, i) => (
-              <li key={i}>
+              <li key={i} className={filter.genres[genre.id] ? "isActive" : ""}>
                 <label htmlFor={`genre-${genre.id}`}>{genre.desc}</label>
                 <input
                   type="checkbox"
@@ -76,7 +76,10 @@ export default function Filter({ commonGames, setFilteredGames }) {
           <hr />
           <ul>
             {categories.map((cat, i) => (
-              <li key={i}>
+              <li
+                key={i}
+                className={filter.categories[cat.id] ? "isActive" : ""}
+              >
                 <label htmlFor={`category-${cat.id}`}>{cat.desc}</label>
                 <input
                   type="checkbox"
