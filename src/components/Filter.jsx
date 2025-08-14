@@ -42,6 +42,7 @@ export default function Filter({ setCommonGames }) {
   console.log(filter.getFilterCount());
   return (
     <div id="filter">
+      <h2>Filters</h2>
       <section id="genres">
         <details>
           <summary>Genres</summary>
