@@ -1,5 +1,4 @@
 import { sampleGames } from "./data_sampleGames";
-
 import { useEffect, useState } from "react";
 import PlayerSelect from "./components/Main/PlayerSelect";
 import { getUserProfile } from "./utils/getUserProfile";
@@ -20,10 +19,6 @@ export default function App() {
     console.log("UserOne ", userOne);
     console.log("UserTwo ", userTwo);
   }, []);
-  async function logLib() {
-    const _lib = await getUserLibrary("76561197988759223");
-    console.log(_lib);
-  }
 
   const [status, setStatus] = useState(null);
   const [error, setError] = useState(null);
