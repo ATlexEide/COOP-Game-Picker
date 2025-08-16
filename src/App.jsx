@@ -1,12 +1,12 @@
-import { sampleGames } from "./data_sampleGames";
 import { useEffect, useState } from "react";
+
 import PlayerSelect from "./components/Main/PlayerSelect";
-import { getUserProfile } from "./utils/getUserProfile";
+import CommonGames from "./components/Main/CommonGames";
+import Filter from "./components/Filter";
+
 import getAndSetUserLibraries from "./utils/getAndSetUserLibraries";
 import getCommonGames from "./utils/getCommonGames";
-import CommonGames from "./components/Main/CommonGames";
-import { getUserLibrary } from "./utils/getUserLibrary";
-import Filter from "./components/Filter";
+import getUserProfile from "./utils/getUserProfile";
 
 import { Zoomies } from "ldrs/react";
 import "ldrs/react/Zoomies.css";
