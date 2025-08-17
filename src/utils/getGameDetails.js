@@ -13,7 +13,7 @@ Skipped games: ${skippedGamesCounter}`
     );
   try {
     const req = await fetch(
-      `${import.meta.env.VITE_SERVER_BASE_URL}/game/${appID}`
+      `${import.meta.env.VITE_SERVER_BASE_URL}/game/${appID}/details`
     );
     const res = await req.json();
     return res[appID].data;
