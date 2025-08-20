@@ -94,14 +94,15 @@ export default function App() {
               clearUser={clearUser}
             />
           </div>
-          <div id="selected-userID-text">
-            {userOne !== null && (
+          <div id="users">
+            {userOne && (
               <section className="user-info">
                 <h1>{userOne.personaname}</h1>
                 <img src={userOne.avatarfull} alt="" />
                 <p>SteamID: {userOne.steamid}</p>
               </section>
             )}
+            {!userOne && <section className="user-info"></section>}
             {userTwo && (
               <section className="user-info">
                 <h1>{userTwo.personaname}</h1>
@@ -109,6 +110,7 @@ export default function App() {
                 <p>SteamID: {userTwo.steamid}</p>
               </section>
             )}
+            {!userTwo && <section className="user-info"></section>}
           </div>
           {userOne &&
             userTwo &&

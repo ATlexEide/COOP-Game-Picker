@@ -26,14 +26,27 @@ main {
   width: 80%;
 }
 
-#selected-userID-text {
+#users {
   display: flex;
   justify-content: space-around;
 }
 
 .user-info {
+  aspect-ratio: 1;
+  width: 200px;
+  height: fit-content;
   display: flex;
   flex-direction: column;
+}
+
+.user-info img {
+  height: 200px;
+  aspect-ratio: 1;
+}
+
+.user-info img[src=""] {
+  display: block;
+  border: none;
 }
 
 #status-text {
@@ -82,4 +95,9 @@ main {
   background-position: right center; /* change the direction of the change here */
   color: #fff;
   text-decoration: none;
+}
+
+#users {
+  background-color: red;
+  height: fit-content;
 }
