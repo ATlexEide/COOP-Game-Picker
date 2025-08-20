@@ -74,9 +74,42 @@ export default function App() {
       <main>
         <h2>Temp IDs for DEV</h2>
         <ul>
-          <li>Alex: 76561198166759634</li>
-          <li>Chooie: 76561198269275836</li>
-          <li>Lenni: 76561198217411617</li>
+          <li>
+            Alex:{" "}
+            <span
+              onClick={(e) => {
+                navigator.clipboard.writeText(e.target.textContent);
+                console.clear();
+                console.log(e.target.textContent);
+              }}
+            >
+              76561198166759634
+            </span>
+          </li>
+          <li>
+            Chooie:{" "}
+            <span
+              onClick={(e) => {
+                navigator.clipboard.writeText(e.target.textContent);
+                console.clear();
+                console.log(e.target.textContent);
+              }}
+            >
+              76561198269275836
+            </span>
+          </li>
+          <li>
+            Lenni:{" "}
+            <span
+              onClick={(e) => {
+                navigator.clipboard.writeText(e.target.textContent);
+                console.clear();
+                console.log(e.target.textContent);
+              }}
+            >
+              76561198217411617
+            </span>
+          </li>
         </ul>
         <section id="user-select">
           <div id="userID-input">
