@@ -3,38 +3,50 @@ import SelectedGame from "../SelectedGame";
 import "./CommonGames.css";
 
 export default function CommonGames({ games }) {
-  const [randomGame, setRandomGame] = useState(null);
+  const [selectedGame, setSelectedGame] = useState(null);
   function pickRandomGame() {
-    setRandomGame(games[Math.floor(Math.random() * games.length)]);
+    console.clear();
+    const randomIndex = Math.floor(Math.random() * games.length);
+    console.log(randomIndex);
+    if (!games[randomIndex]) pickRandomGame();
+    else {
+      setSelectedGame(games[randomIndex]);
+    }
   }
   console.log(games);
   return (
-    <section id={randomGame ? "common-games-random" : "common-games"}>
+    <section id={selectedGame ? "selected-game" : "common-games"}>
       <div id="random-game-btns">
-        {randomGame && (
+        {selectedGame && (
           <button
             onClick={() => {
-              setRandomGame(null);
+              setSelectedGame(null);
             }}
           >
             Back
           </button>
         )}
         <button onClick={pickRandomGame}>
-          {randomGame ? "Try again" : "Pick radom game"}
+          {selectedGame ? "New Game" : "Pick Radom Game"}
         </button>
       </div>
-      {randomGame && (
+      {selectedGame && (
         <>
-          <SelectedGame game={randomGame} />
+          <SelectedGame game={selectedGame} />
         </>
       )}
-      {!randomGame && (
+      {!selectedGame && (
         <ul>
           {games.map((game, i) => {
             if (!game) return;
             return (
-              <li className="game" key={i}>
+              <li
+                onClick={() => {
+                  setSelectedGame(game);
+                }}
+                className="game"
+                key={i}
+              >
                 <img src={game.capsule_image} alt={game.name + " thumbnail"} />
               </li>
             );
