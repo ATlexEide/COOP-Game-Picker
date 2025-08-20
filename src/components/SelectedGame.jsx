@@ -19,9 +19,9 @@ export default function SelectedGame({ game }) {
       />
       <h2 id="random-game-title">{game.name}</h2>
       <p>{game.short_description}</p>
-
+      <br />
       <hr />
-      {Boolean(game.screenshots.length) && (
+      {game.screenshots && Boolean(game.screenshots.length) && (
         <Swiper
           effect={"coverflow"}
           slidesPerView={3}
@@ -53,8 +53,9 @@ export default function SelectedGame({ game }) {
           ))}
         </Swiper>
       )}
-
       <hr />
+      <br />
+
       <h4>Spec requirements</h4>
       <div dangerouslySetInnerHTML={{ __html: game.pc_requirements.minimum }} />
       <br />
