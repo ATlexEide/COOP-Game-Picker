@@ -18,10 +18,6 @@
   gap: var(--element-spacing);
 }
 
-#selected-game-container hr {
-  margin-top: calc(-1 * var(--element-spacing));
-}
-
 #selected-game-image {
   align-self: center;
   padding: 20px;
