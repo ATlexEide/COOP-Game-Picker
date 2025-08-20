@@ -2,6 +2,7 @@
   min-height: 80svh;
   height: fit-content;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: start;
   max-width: 100%;
@@ -27,4 +28,21 @@
 #common-games .game:hover {
   scale: 1.1;
   z-index: 2;
+}
+
+#common-games-random {
+  width: 80%;
+  height: 80svh;
+  background-color: red;
+  display: flex;
+  flex-direction: column;
+}
+
+#common-games-random img {
+  height: 500px;
+}
+
+#random-game-btns {
+  display: flex;
+  gap: 12px;
 }
