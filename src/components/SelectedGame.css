@@ -4,16 +4,16 @@
   background-color: blue;
 }
 
-#common-games-random img {
-  height: 200px;
-}
-
 #common-games-random {
   width: 80%;
-  height: 80svh;
+  min-height: 80svh;
   background-color: red;
   display: flex;
   flex-direction: column;
+}
+
+#selected-game img {
+  height: 500px;
 }
 
 #random-game-btns {
