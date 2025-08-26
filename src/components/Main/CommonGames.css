@@ -6,6 +6,7 @@
   justify-content: center;
   align-items: start;
   max-width: 100%;
+  gap: 20px;
 }
 
 #common-games ul {
@@ -30,7 +31,20 @@
   z-index: 2;
 }
 
-.steam-play {
+.steam-play:hover {
+  transform: translate(0px, 2px);
+}
+
+.button-icon {
+  height: 100%;
+}
+
+#random-game-btns {
+  display: flex;
+  gap: 7px;
+}
+
+#random-game-btns button {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -51,10 +65,11 @@
   font-weight: 600;
 
   min-width: fit-content;
-  width: 200px;
   height: 50px;
+  transition: 0.2s;
 }
 
-#randomIcon {
-  height: 100%;
+#random-game-btns button:hover {
+  transform: translate(0px, 2px);
+  scale: 0.99;
 }
