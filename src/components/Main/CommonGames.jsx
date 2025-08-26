@@ -3,6 +3,7 @@ import SelectedGame from "../SelectedGame";
 import "./CommonGames.css";
 
 import diceIcon from "../../assets/dice.png";
+import backIcon from "../../assets/back.png";
 
 export default function CommonGames({ games }) {
   const [selectedGame, setSelectedGame] = useState(null);
@@ -25,11 +26,12 @@ export default function CommonGames({ games }) {
               setSelectedGame(null);
             }}
           >
+            <img id="backIcon" className="button-icon" src={backIcon} alt="" />
             Back
           </button>
         )}
         <button onClick={pickRandomGame} className="steam-play">
-          <img id="randomIcon" src={diceIcon} alt="" />
+          <img id="randomIcon" className="button-icon" src={diceIcon} alt="" />
           {selectedGame ? "NEW GAME" : "PICK RANDOM GAME"}
         </button>
       </div>
