@@ -207,7 +207,7 @@ export default function App() {
           />
         )}
         {!filteredGames && commonGames && <CommonGames games={commonGames} />}
-        {filteredGames && <CommonGames games={filteredGames} />}
+        {filteredGames && commonGames && <CommonGames games={filteredGames} />}
       </main>
     </>
   );
