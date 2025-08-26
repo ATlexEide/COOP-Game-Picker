@@ -17,7 +17,7 @@ export default function CommonGames({ games }) {
     }
   }
   console.log(games);
-  if (!games.length)
+  if (games && !games.length)
     return (
       <section id="no-games">
         <p>hmmm.... doesn&apos;t seem like any games fit your filter</p>
