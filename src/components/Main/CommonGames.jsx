@@ -2,6 +2,8 @@ import { useState } from "react";
 import SelectedGame from "../SelectedGame";
 import "./CommonGames.css";
 
+import diceIcon from "../../assets/dice.png";
+
 export default function CommonGames({ games }) {
   const [selectedGame, setSelectedGame] = useState(null);
   function pickRandomGame() {
@@ -26,8 +28,9 @@ export default function CommonGames({ games }) {
             Back
           </button>
         )}
-        <button onClick={pickRandomGame}>
-          {selectedGame ? "New Game" : "Pick Radom Game"}
+        <button onClick={pickRandomGame} className="steam-play">
+          <img id="randomIcon" src={diceIcon} alt="" />
+          {selectedGame ? "NEW GAME" : "PICK RANDOM GAME"}
         </button>
       </div>
       {selectedGame && (
