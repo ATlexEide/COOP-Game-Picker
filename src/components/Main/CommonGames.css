@@ -3,7 +3,7 @@
   height: fit-content;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
   align-items: start;
   max-width: 100%;
   gap: 20px;
