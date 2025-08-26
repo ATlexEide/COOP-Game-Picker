@@ -1,3 +1,4 @@
+#no-games,
 #common-games {
   min-height: 80svh;
   height: fit-content;
@@ -5,8 +6,12 @@
   flex-direction: column;
   justify-content: start;
   align-items: start;
-  max-width: 100%;
+  width: 100%;
   gap: 20px;
+}
+
+#no-games {
+  align-items: center;
 }
 
 #common-games ul {
@@ -31,10 +36,6 @@
   z-index: 2;
 }
 
-.steam-play:hover {
-  transform: translate(0px, 2px);
-}
-
 .button-icon {
   height: 100%;
 }
@@ -52,12 +53,6 @@
   padding: 10px 34px;
 
   position: relative;
-  background: #56c933;
-  background: linear-gradient(
-    90deg,
-    rgba(86, 201, 51, 1) 0%,
-    rgba(31, 177, 79, 1) 100%
-  );
 
   border-radius: 2px;
   border: none;
@@ -72,4 +67,22 @@
 #random-game-btns button:hover {
   transform: translate(0px, 2px);
   scale: 0.99;
+}
+
+.steam-play {
+  background: #56c933;
+  background: linear-gradient(
+    90deg,
+    rgba(86, 201, 51, 1) 0%,
+    rgba(31, 177, 79, 1) 100%
+  );
+}
+
+.steam-stop {
+  background: #359ded;
+  background: linear-gradient(
+    90deg,
+    rgba(53, 157, 237, 1) 0%,
+    rgba(30, 95, 207, 1) 100%
+  );
 }
