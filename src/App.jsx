@@ -10,6 +10,10 @@ import getUserProfile from "./utils/getUserProfile";
 
 import { Zoomies } from "ldrs/react";
 import "ldrs/react/Zoomies.css";
+
+import { Ripples } from "ldrs/react";
+import "ldrs/react/Ripples.css";
+
 import "./App.css";
 
 export default function App() {
@@ -128,6 +132,12 @@ export default function App() {
             />
           </div>
           <div id="users">
+            {!userOne && userIdOne && (
+              <section className="user-info">
+                <Ripples size="200" speed="2" color="white" />
+              </section>
+            )}
+
             {userOne && (
               <section className="user-info">
                 <h1>{userOne.personaname}</h1>
@@ -135,7 +145,17 @@ export default function App() {
                 <p>SteamID: {userOne.steamid}</p>
               </section>
             )}
-            {!userOne && <section className="user-info"></section>}
+
+            {!userOne && !userIdOne && (
+              <section className="user-info"></section>
+            )}
+
+            {!userTwo && userIdTwo && (
+              <section className="user-info">
+                <Ripples size="200" speed="2" color="white" />
+              </section>
+            )}
+
             {userTwo && (
               <section className="user-info">
                 <h1>{userTwo.personaname}</h1>
@@ -143,8 +163,12 @@ export default function App() {
                 <p>SteamID: {userTwo.steamid}</p>
               </section>
             )}
-            {!userTwo && <section className="user-info"></section>}
+
+            {!userTwo && !userIdTwo && (
+              <section className="user-info"></section>
+            )}
           </div>
+
           {userOne &&
             userTwo &&
             !commonGames &&
