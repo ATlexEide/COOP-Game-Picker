@@ -2,8 +2,8 @@ import { useState } from "react";
 import SelectedGame from "../SelectedGame";
 import "./CommonGames.css";
 
-import diceIcon from "../../assets/dice.png";
-import backIcon from "../../assets/back.png";
+import diceIcon from "../../assets/icons/dice.png";
+import backIcon from "../../assets/icons/back.png";
 
 export default function CommonGames({ games }) {
   const [selectedGame, setSelectedGame] = useState(null);
