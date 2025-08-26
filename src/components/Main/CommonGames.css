@@ -8,6 +8,7 @@
   align-items: start;
   width: 100%;
   gap: 20px;
+  padding: 0 0 72px 0;
 }
 
 #no-games {
