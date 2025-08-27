@@ -140,8 +140,8 @@ export default function App() {
 
             {userOne && (
               <section className="user-info">
-                <h1>{userOne.personaname}</h1>
                 <img src={userOne.avatarfull} alt="" />
+                <h1>{userOne.personaname}</h1>
                 <p>SteamID: {userOne.steamid}</p>
               </section>
             )}
@@ -158,8 +158,8 @@ export default function App() {
 
             {userTwo && (
               <section className="user-info">
-                <h1>{userTwo.personaname}</h1>
                 <img src={userTwo.avatarfull} alt="" />
+                <h1>{userTwo.personaname}</h1>
                 <p>SteamID: {userTwo.steamid}</p>
               </section>
             )}
