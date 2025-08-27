@@ -3,13 +3,9 @@
 }
 
 #selected-game {
-  width: 80vw;
-  height: 80svh;
-}
-
-#selected-game {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 #selected-game-container {
